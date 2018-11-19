@@ -15,3 +15,12 @@ spring:
      port: 15672
         username: xzh
         password: xzh
+eureka:
+  instance:
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 20
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:7011/eureka
+    registry-fetch-interval-seconds: 10
