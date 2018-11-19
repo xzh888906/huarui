@@ -1,0 +1,17 @@
+server:
+  port: 7009
+spring:
+  application:
+    name: config
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/xzh888906/huarui.git
+          username: xzh888906
+          password: xzh@770207
+  rabbitmq:
+    host: 127.0.0.1
+     port: 15672
+        username: xzh
+        password: xzh
