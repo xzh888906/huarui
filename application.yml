@@ -12,15 +12,12 @@ spring:
           password: xzh@770207
   rabbitmq:
     host: 127.0.0.1
-     port: 15672
-        username: xzh
-        password: xzh
+    password: xzh
+    username: xzh
+    port: 15672
 eureka:
   instance:
     prefer-ip-address: true
-    lease-renewal-interval-in-seconds: 5
-    lease-expiration-duration-in-seconds: 20
   client:
     serviceUrl:
       defaultZone: http://localhost:7011/eureka
-    registry-fetch-interval-seconds: 10
