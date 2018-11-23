@@ -1,22 +1,32 @@
+env: dev
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+    service-url:
+      defaultZone: http://localhost:7010/eureka/
+  instance:
+    lease-expiration-duration-in-seconds: 90
+    lease-renewal-interval-in-seconds: 30
+    prefer-ip-address: true
 server:
   port: 7012
 spring:
   application:
-    name: gateway 
-eureka:
-  client:
-    service-url:
-       defaultZone: http://localhost:7010/eureka/
-    healthcheck:
-      enabled: true
-  instance:
-    prefer-ip-address: true
-    lease-renewal-interval-in-seconds: 30
-    lease-expiration-duration-in-seconds: 90
+    name: gateway
+  cloud:
+    config:
+      server:
+        git:
+          password: xzh@770207
+          uri: https://github.com/xzh888906/huarui.git
+          username: xzh888906
+  rabbitmq:
+    host: localhost
+    password: guest
+    port: 5672
+    username: guest
 zuul:
   host:
     connect-timeout-millis: 10000
-    socket-timeout-millis: 60000    
- 
-env:
-  dev
+    socket-timeout-millis: 60000
