@@ -1,0 +1,11 @@
+server:
+  port: 7013
+spring:
+  application:
+    name: auth
+eureka:
+  client:
+    service-url:
+       defaultZone: http://localhost:7010/eureka/
+env:
+  dev
