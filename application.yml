@@ -1,5 +1,9 @@
 server:
-  port: 7009
+  port: 7011
+eureka:
+  client:
+    service-url:
+       defaultZone: http://localhost:7010/eureka/
 spring:
   application:
     name: config
@@ -11,13 +15,7 @@ spring:
           username: xzh888906
           password: xzh@770207
   rabbitmq:
-    host: 127.0.0.1
-    password: xzh
-    username: xzh
-    port: 15672
-eureka:
-  instance:
-    prefer-ip-address: true
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:7011/eureka
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
