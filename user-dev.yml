@@ -34,5 +34,5 @@ eureka:
        defaultZone: http://localhost:7010/eureka/
 mybatis:
   mapper-locations: classpath:mapping/*.xml
-  type-aliases-package: com.huarui.user.entity
+  type-aliases-package: com.huarui.user.bean
 
