@@ -12,7 +12,7 @@ spring:
         enabled: true
   datasource:
       name: mytest
-      url: jdbc:mysql://127.0.0.1:3306/cloud_huarui?useUnicode=true&characterEncoding=utf-8
+      url: jdbc:mysql://127.0.0.1:3306/cloud_huarui?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false
       username: root
       password: root
       # 使用druid数据源
