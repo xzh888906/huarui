@@ -36,7 +36,7 @@ spring:
     password: guest
     port: 5672
     username: guest
-mybatis-plus:
+mybatis:
   mapper-locations: classpath:/mapper/*Mapper.xml
   typeAliasesPackage: com.huarui.user.bean
   global-config:
