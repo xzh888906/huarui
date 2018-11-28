@@ -31,12 +31,10 @@ spring:
       testOnReturn: false
       poolPreparedStatements: true
       maxOpenPreparedStatements: 20
- rabbitmq:
-    host: localhost
-    password: guest
-    port: 5672
-    username: guest
-mybatis:
+mapper:
+  mappers:
+     com.huarui.user.mapper
+mybatis-plus:
   mapper-locations: classpath:/mapper/*Mapper.xml
   typeAliasesPackage: com.huarui.user.bean
   global-config:
@@ -62,4 +60,3 @@ mybatis:
   configuration:
     map-underscore-to-camel-case: true
     cache-enabled: false
-
