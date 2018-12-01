@@ -33,52 +33,10 @@ zuul:
   host:
     connect-timeout-millis: 10000
     socket-timeout-millis: 60000
-  retryable: true    #重试必配 
+ # retryable: true    #重试必配
   routes:
-    uaa:
-      path: /uaa/**
-      strip-prefix: true
-      sensitiveHeaders:
-      serviceId: auth
-
-security:
-  basic:
-    enabled: false
-  oauth2:
-     sso:
-     loginPath: /login
-    client:
-     ##网关的地址
-      access-token-uri: http://localhost:7013/uaa/oauth/token
-      user-authorization-uri: http://localhost:7013/uaa/oauth/authorize
-      client-id: client
-      client-secret: secret
-    resource:
-      user-info-uri:  http://localhost:9060/user
-      prefer-token-info: false
-    jwt:
-        key-value: \-----BEGIN CERTIFICATE-----\
-                  MIIDVzCCAj+gAwIBAgIEHAj2BjANBgkqhkiG9w0BAQsFADBcMQ4wDAYDVQQGEwVj
-                  aGluYTEMMAoGA1UECBMDc2p6MQwwCgYDVQQHEwNzanoxDzANBgNVBAoTBmh1YXJ1
-                  aTEPMA0GA1UECxMGaHVhcnVpMQwwCgYDVQQDEwN4emgwHhcNMTgxMTI5MDc1NDE5
-                  WhcNMTkwMjI3MDc1NDE5WjBcMQ4wDAYDVQQGEwVjaGluYTEMMAoGA1UECBMDc2p6
-                  MQwwCgYDVQQHEwNzanoxDzANBgNVBAoTBmh1YXJ1aTEPMA0GA1UECxMGaHVhcnVp
-                  MQwwCgYDVQQDEwN4emgwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCG
-                  tdpYsxAy8Qjdf7HVSsvkl94HzWIaQohHYMpRBjGkZ4wXh4VEz1M6lrlzKG1It6ue
-                  zjkj/Ed7CpXTaQg5JokvUl5iPbJ/RfnDus+X9Djdz1bFK4sckK2jsUQDno7P/F/6
-                  uKRb3iuEDuHAqnoJn0LxSUGZukWgZlNFUcp5HSAqw06jtF6uH02PHaH/6/nUBjTZ
-                  ipJxwhEpReNY2xww2RUlGoedrJr0hUhxSldnk+LfMoy+5LZAJsF++gfbxyIdD9kk
-                  tdSMPMCpXMgBHi88Er/CpbVPWql4Sac5r9EMHsspnDQO0+8XbuDXOgERsqw6CGhp
-                  GrM6Bd2FhRiOyj/MGyGvAgMBAAGjITAfMB0GA1UdDgQWBBREEu0Pd2t+R/6R2jOE
-                  Zs7/3jr9pzANBgkqhkiG9w0BAQsFAAOCAQEAOI2BmFtG4AE18yK6VOiXh1mP4QF5
-                  RuE8F+1vgtNPhXL71Q3PQcOnp1XZfS0qSMJCPtK+AGSgsFpchrNh9WhSb3BFtkFM
-                  U/jQOUOfFM9ZXhewNfWB3Qq+BzaUZUNyY8s4BZ4OOlZzdouK7XvuG4d9M1w5f94M
-                  LrYRIku7BakT6Ktga+Rwsasdb/dAfby0VnMmIYvRotZ6mLuAo6OuA4Z7/cL1gSzB
-                  CnZJGtdHfEkSZLssZJEu5HreBc4joQTkC9mzsBwoIr7Hkpm85x9nz0PLXHk3SZKJ
-                  0xEfUAB6Yb9Dm+uWbgL5oRiiZwbDlM5QJuOETuLPbftN7UyfsDvYnVuiaQ==
-                  -----END CERTIFICATE-----
-      id: gateway
-      service-id: gateway  
+      auth:
+        path: /uaa/**
 ribbon:  
   ReadTimeout: 60000  
   ConnectTimeout: 60000      
@@ -89,3 +47,20 @@ hystrix:
                 isolation:
                     thread:
                         timeoutInMilliseconds: 60000
+security:
+  oauth2:
+    sso:
+      login-path: /login
+    client:
+      access-token-uri: http://127.0.0.1:7013/uaa/oauth/token
+      user-authorization-uri: http://127.0.0.1:7013/uaa/oauth/authorize
+      client-id: client
+      client-secret: secret
+    resource:
+      jwt:
+        key-value: -----BEGIN PUBLIC KEY-----
+                   MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAhrXaWLMQMvEI3X+x1UrL5JfeB81iGkKIR2DKUQYxpGeMF4eFRM9TOpa5cyhtSLerns45I/xHewqV02kIOSaJL1JeYj2yf0X5w7rPl/Q43c9WxSuLHJCto7FEA56Oz/xf+rikW94rhA7hwKp6CZ9C8UlBmbpFoGZTRVHKeR0gKsNOo7Rerh9Njx2h/+v51AY02YqSccIRKUXjWNscMNkVJRqHnaya9IVIcUpXZ5Pi3zKMvuS2QCbBfvoH28ciHQ/ZJLXUjDzAqVzIAR4vPBK/wqW1T1qpeEmnOa/RDB7LKZw0DtPvF27g1zoBEbKsOghoaRqzOgXdhYUYjso/zBshrwIDAQAB
+                   -----END PUBLIC KEY-----
+      id: gateway
+      service-id: gateway
+      loadBalanced: true
