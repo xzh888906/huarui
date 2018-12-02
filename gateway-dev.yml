@@ -33,7 +33,7 @@ zuul:
   host:
     connect-timeout-millis: 10000
     socket-timeout-millis: 60000
- # retryable: true    #重试必配
+    retryable: true    #重试必配
   routes:
       auth:
         path: /uaa/**
@@ -56,11 +56,12 @@ security:
       user-authorization-uri: http://127.0.0.1:7013/uaa/oauth/authorize
       client-id: client
       client-secret: secret
+      use-current-uri: false
     resource:
       jwt:
         key-value: -----BEGIN PUBLIC KEY-----
                    MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAhrXaWLMQMvEI3X+x1UrL5JfeB81iGkKIR2DKUQYxpGeMF4eFRM9TOpa5cyhtSLerns45I/xHewqV02kIOSaJL1JeYj2yf0X5w7rPl/Q43c9WxSuLHJCto7FEA56Oz/xf+rikW94rhA7hwKp6CZ9C8UlBmbpFoGZTRVHKeR0gKsNOo7Rerh9Njx2h/+v51AY02YqSccIRKUXjWNscMNkVJRqHnaya9IVIcUpXZ5Pi3zKMvuS2QCbBfvoH28ciHQ/ZJLXUjDzAqVzIAR4vPBK/wqW1T1qpeEmnOa/RDB7LKZw0DtPvF27g1zoBEbKsOghoaRqzOgXdhYUYjso/zBshrwIDAQAB
                    -----END PUBLIC KEY-----
       id: gateway
-      service-id: gateway
+      service-id: ${PREFIX:}gateway
       loadBalanced: true
